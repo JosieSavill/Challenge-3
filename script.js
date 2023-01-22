@@ -9,21 +9,51 @@ var container  = [];
 
 
 function generatePassword(){
+
+
   var numberChars = window.prompt("How many characters would you like your password to contain?");
-  console.log (numberChars);
+
+  //These are booleon
   var specialChars = window.confirm("Click OK to confirm including special characters.");
-  console.log("specialChars" , specialChars);
-  var numericChars = window.confirm("Click OK to confirm including numeric characters.");
-
   var lowerCase = window.confirm("Click OK to confirm lower case characters");
+  var numericChars = window.confirm("Click OK to confirm including numeric characters.");
   var upperCase = window.confirm("Click OK to confirm uncluding upper case characters.");
-
-  if (lowerCase) {
-    container = container + lower.join("") + special.join("") + upper.join("") + numbers.join("");
-    
+  
+  if(specialChars){
+ 
+    container = container.concat(special)
   }
 
-  console.log(container);
+  if(lowerCase){
+    container = container.concat(lower)
+  }
+
+  if(numericChars){
+    container = container.concat(numbers);
+  }
+
+
+  if(upperCase){
+    container = container.concat(upper);
+  }
+
+
+
+  //console.log("check",container)
+
+  for(var i = 0; i < numberChars; i++){
+
+   
+    var index = Math.floor(Math.random() *  (container.length - 1));//random number 0 -25 
+    newPassword = newPassword + container[index] //0
+
+ 
+
+  }
+
+
+
+  console.log("password:",password)
 
 
   
@@ -34,14 +64,12 @@ function generatePassword(){
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var password = generatePassword(); //gets password genreated
+  var passwordText = document.querySelector("#password"); //selects the html element with id "password"
   
-  passwordText.value = password;
+  passwordText.value = password; //adds text inside as value
   
 }
-
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
@@ -53,25 +81,4 @@ generateBtn.addEventListener("click", writePassword);
 
 
 
-
-// WHEN I click the button to generate a password
-// THEN I am presented with a series of prompts for password criteria
-
-// WHEN prompted for password criteria
-// THEN I select which criteria to include in the password
-
-// WHEN prompted for the length of the password
-// THEN I choose a length of at least 8 characters and no more than 128 characters
-
-// WHEN asked for character types to include in the password
-// THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-
-// WHEN I answer each prompt
-// THEN my input should be validated and at least one character type should be selected
-
-// WHEN all prompts are answered
-// THEN a password is generated that matches the selected criteria
-
-// WHEN the password is generated
-// THEN the password is either displayed in an alert or written to the page
 
